@@ -29,6 +29,7 @@ class ThirdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         Dayset()
         timerFiring()
         updateColor()
+        
     }
     
     //UI設定諸々
@@ -42,9 +43,14 @@ class ThirdViewController: UIViewController, UIImagePickerControllerDelegate, UI
          button.layer.shadowRadius = 5
          button.layer.shadowOpacity = 1.0
         
-         if DateLabel.text != nil{
-             judgeDate()
-          }
+         if saveData.object(forKey: "key_NameText3") != nil{
+                 NameText.backgroundColor = UIColor.colorLerp(from: .white, to: .red, progress: 0.5)
+                }
+                
+                 if saveData.object(forKey: "today3") != nil{
+                     judgeDate()
+                     DateLabel.backgroundColor = UIColor.colorLerp(from: .white, to: .red, progress: 0.5)
+                  }
         
          self.AddImage.isUserInteractionEnabled = true
          NameText.text  = saveData.object(forKey: "key_NameText3") as? String
@@ -152,9 +158,8 @@ class ThirdViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
                //グラデーションの開始色（上下）
                //タイマー処理でRGB値を少しずつ変化させてセット
-            let topColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
-            let bottomColor = UIColor(red: 1.0, green: 0.5, blue: 0, alpha: 1.0)
-
+        let topColor = UIColor(red: 1.0, green: 0.6, blue: 0, alpha: 1.0)
+        let bottomColor = UIColor(red: 1.0, green: 0.4, blue: 0, alpha: 1.0)
                //グラデーションの色を配列で管理
             let gradientColors: [CGColor] = [topColor.cgColor, bottomColor.cgColor]
 
@@ -222,7 +227,7 @@ class ThirdViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
                 UserDefaults.standard.removeObject(forKey: "today3")
                 self.DateLabel.text = ""
-                self.DateLabel.backgroundColor = .gray
+                self.DateLabel.backgroundColor = .white
         
     })
     // キャンセルボタンの処理

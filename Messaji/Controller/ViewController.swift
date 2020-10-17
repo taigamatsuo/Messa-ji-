@@ -42,8 +42,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
          button.layer.shadowRadius = 5
          button.layer.shadowOpacity = 1.0
         
-         if DateLabel.text != nil{
+    
+        if saveData.object(forKey: "key_NameText") != nil{
+         NameText.backgroundColor = UIColor.colorLerp(from: .white, to: .red, progress: 0.5)
+        }
+        
+         if saveData.object(forKey: "today") != nil{
              judgeDate()
+             DateLabel.backgroundColor = UIColor.colorLerp(from: .white, to: .red, progress: 0.5)
           }
         
          self.AddImage.isUserInteractionEnabled = true
@@ -152,8 +158,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
                //グラデーションの開始色（上下）
                //タイマー処理でRGB値を少しずつ変化させてセット
-            let topColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
-            let bottomColor = UIColor(red: 1.0, green: 0.5, blue: 0, alpha: 1.0)
+        let topColor = UIColor(red: 1.0, green: 0.6, blue: 1.0, alpha: 1.0)
+        let bottomColor = UIColor(red: 0, green: 1.0, blue: 0.2, alpha: 1.0)
 
                //グラデーションの色を配列で管理
             let gradientColors: [CGColor] = [topColor.cgColor, bottomColor.cgColor]
@@ -175,7 +181,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //登録ボタンを押した時の処理
     func touchStartAnimation() {
         print("登録ボタンが押されました")
-        UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {() -> Void in
+        UIView.animate(withDuration: 1.0, delay: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: {() -> Void in
             self.button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95);
             self.button.alpha = 0.9
         },completion: nil)
@@ -200,6 +206,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             saveData.set(NameText.text, forKey: "key_NameText")
             saveData.set(TextView.text, forKey: "key_TextView")
             judgeDate()
+            if NameText.text != nil{
+             NameText.backgroundColor = UIColor.colorLerp(from: .white, to: .red, progress: 0.5)
+            }
             // 通知リクエストの登録
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             print("alertrequest!")
@@ -222,7 +231,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
                 UserDefaults.standard.removeObject(forKey: "today")
                 self.DateLabel.text = ""
-                self.DateLabel.backgroundColor = .gray
+                self.DateLabel.backgroundColor = .white
         
     })
     // キャンセルボタンの処理
