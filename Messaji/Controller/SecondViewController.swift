@@ -34,7 +34,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     //UI設定諸々
     func UIset(){
-         AddImage.layer.cornerRadius = 70
+         AddImage.layer.cornerRadius = 60
          AddImage.layer.borderColor = UIColor.gray.cgColor
          AddImage.layer.borderWidth = 1
         
