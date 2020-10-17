@@ -16,10 +16,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
        @IBOutlet weak var DateLabel: UILabel!
        @IBOutlet var button : UIButton!
        @IBOutlet var backView : UIView!
+       @IBOutlet var TextView : UITextView!
+       @IBOutlet var iconImage : UIImageView!
        var saveData : UserDefaults = UserDefaults.standard
        var Userimage : UIImage!
        var request : UNNotificationRequest!
-    let color = UIColor.colorLerp(from: .white, to: .red, progress: 0.5)
+       let color = UIColor.colorLerp(from: .white, to: .red, progress: 0.5)
       
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +34,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //UI設定諸々
     func UIset(){
          AddImage.layer.cornerRadius = 70
-         //AddImage.layer.shadowColor = UIColor.black.cgColor //影の色を決める
-        //AddImage.layer.shadowOpacity = 0.5 //影の色の透明度
-        // AddImage.layer.shadowRadius = 3 //影のぼかし
-       //  AddImage.layer.shadowOffset = CGSize(width: 4, height: 4)
          AddImage.layer.borderColor = UIColor.gray.cgColor
          AddImage.layer.borderWidth = 1
-       
-        
         
          button.layer.shadowOffset = CGSize(width: 1, height: 1 )
          button.layer.shadowColor = UIColor.gray.cgColor
@@ -52,7 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
          self.AddImage.isUserInteractionEnabled = true
          NameText.text  = saveData.object(forKey: "key_NameText") as? String
-       
+         TextView.text  = saveData.object(forKey: "key_TextView") as? String
          if saveData.object(forKey: "key_AddImage") != nil {
             let ImageData = saveData.data(forKey: "key_AddImage")
             let Userimage2 = UIImage(data: ImageData!)
@@ -60,7 +56,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             AddImage.image = Userimage
          }
     }
-    
     
     // 日付フォーマット
     func Dayset(){
@@ -70,7 +65,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
            dateFormatter.dateStyle = .medium
            dateFormatter.locale = Locale(identifier: "ja_JP")
     
-           // 現在時刻の1分後に設定
+           // 現在時刻の30日後に設定
            let date2 = Date(timeInterval: 2320000, since: date)
            let targetDate = Calendar.current.dateComponents(
                [.year, .month, .day, .hour, .minute],
@@ -157,22 +152,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
                //グラデーションの開始色（上下）
                //タイマー処理でRGB値を少しずつ変化させてセット
-        let topColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
-        let bottomColor = UIColor(red: 1.0, green: 0.5, blue: 0, alpha: 1.0)
+            let topColor = UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)
+            let bottomColor = UIColor(red: 1.0, green: 0.5, blue: 0, alpha: 1.0)
 
                //グラデーションの色を配列で管理
-               let gradientColors: [CGColor] = [topColor.cgColor, bottomColor.cgColor]
+            let gradientColors: [CGColor] = [topColor.cgColor, bottomColor.cgColor]
 
                //グラデーションレイヤーを作成
-        var gradientLayer = CAGradientLayer()
-        gradientLayer.removeFromSuperlayer()
-               gradientLayer = CAGradientLayer()
+            var gradientLayer = CAGradientLayer()
+            gradientLayer.removeFromSuperlayer()
+            gradientLayer = CAGradientLayer()
                //グラデーションの色をレイヤーに割り当てる
-        gradientLayer.colors = gradientColors
+            gradientLayer.colors = gradientColors
                //グラデーションレイヤーをスクリーンサイズにする
-        gradientLayer.frame = self.view.bounds
+            gradientLayer.frame = self.view.bounds
                //グラデーションレイヤーをビューの一番下に配置
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
+            self.view.layer.insertSublayer(gradientLayer, at: 0)
            }
     
     
@@ -203,8 +198,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             touchStartAnimation()
             DateLabel.backgroundColor = color
             saveData.set(NameText.text, forKey: "key_NameText")
-           // let data = Userimage.pngData()
-            //saveData.set(data, forKey: "key_AddImage")
+            saveData.set(TextView.text, forKey: "key_TextView")
             judgeDate()
             // 通知リクエストの登録
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
@@ -220,16 +214,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //delete
     @IBAction func delete(){
            
-               if saveData.object(forKey: "today") != nil {
-        let alert: UIAlertController = UIAlertController(title: "メッセージを送りましたか？", message:  "日付をリセットします", preferredStyle:  UIAlertController.Style.alert)
-    // 確定ボタンの処理
-    let confirmAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
-        // 確定ボタンが押された時の処理をクロージャ実装する
-        (action: UIAlertAction!) -> Void in
-        //実際の処理
-       UserDefaults.standard.removeObject(forKey: "today")
-        self.DateLabel.text = ""
-        self.DateLabel.backgroundColor = .gray
+            if saveData.object(forKey: "today") != nil {
+            let alert: UIAlertController = UIAlertController(title: "メッセージを送りましたか？", message:  "日付をリセットします", preferredStyle:  UIAlertController.Style.alert)
+   
+            let confirmAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+                (action: UIAlertAction!) -> Void in
+        
+                UserDefaults.standard.removeObject(forKey: "today")
+                self.DateLabel.text = ""
+                self.DateLabel.backgroundColor = .gray
         
     })
     // キャンセルボタンの処理
@@ -310,8 +303,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
 
-    
-
         extension ViewController {
         
             
@@ -331,4 +322,3 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.dismiss(animated: true, completion: nil)
             }
         }
-
