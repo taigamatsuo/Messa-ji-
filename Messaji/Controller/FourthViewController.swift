@@ -227,7 +227,7 @@ class FourthViewController: UIViewController, UIImagePickerControllerDelegate, U
                 (action: UIAlertAction!) -> Void in
         
                 UserDefaults.standard.removeObject(forKey: "today4")
-                self.DateLabel.text = ""
+                self.NameText.text = ""
                 self.DateLabel.backgroundColor = .white
         
     })

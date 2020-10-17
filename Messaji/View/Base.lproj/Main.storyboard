@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vqB-5e-ki8">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -20,24 +20,71 @@
             <objects>
                 <viewController storyboardIdentifier="FirstView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pvl-5C-RFT" customClass="ViewController" customModule="Messaji" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o0D-mM-VTz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Cj-UY-wLJ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFX-jg-TG5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <navigationItem id="wXy-es-aQT"/>
+                                    <navigationItem title="メッセー爺！" id="tmY-5h-J6v">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="rKd-3V-WdF">
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="delete" destination="pvl-5C-RFT" id="ahU-gd-7B0"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a4T-WP-Gj9">
-                                <rect key="frame" x="20" y="158" width="374" height="265"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Edp-Qa-WW6">
+                                <rect key="frame" x="16" y="373" width="343" height="163"/>
+                                <color key="backgroundColor" red="0.97680455450000003" green="0.90155806920000003" blue="0.8865142278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Edp-Qa-WW6" secondAttribute="height" multiplier="343:163" id="c1l-5H-KbK"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="18"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="W0i-cy-i3e">
+                                <rect key="frame" x="16" y="324" width="40" height="36.5"/>
+                                <color key="tintColor" red="0.97680455450000003" green="0.90155806920000003" blue="0.8865142278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2fB-Im-Dmd"/>
+                                    <constraint firstAttribute="width" constant="40" id="u5U-pE-QGt"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4T-WP-Gj9">
+                                <rect key="frame" x="16" y="76" width="343" height="238"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-4h-3OB">
-                                        <rect key="frame" x="158" y="147" width="209" height="82"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Eom-Yf-EDT">
+                                        <rect key="frame" x="8" y="59" width="120" height="120.5"/>
+                                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="KKC-mx-vNQ"/>
+                                            <constraint firstAttribute="width" constant="120" id="tcg-hI-x66"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="o59-hy-5D0" appends="YES" id="L04-Fs-CUK"/>
+                                        </connections>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jjr-cI-tFM">
+                                        <rect key="frame" x="136" y="60" width="199" height="36"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojL-4h-3OB">
+                                        <rect key="frame" x="136" y="124" width="199" height="54"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <nil key="textColor"/>
@@ -49,25 +96,21 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jjr-cI-tFM">
-                                        <rect key="frame" x="158" y="78" width="209" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Eom-Yf-EDT">
-                                        <rect key="frame" x="10" y="79" width="140" height="140"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="o59-hy-5D0" appends="YES" id="L04-Fs-CUK"/>
-                                        </connections>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97680455450000003" green="0.90155806920000003" blue="0.8865142278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Jjr-cI-tFM" firstAttribute="leading" secondItem="Eom-Yf-EDT" secondAttribute="trailing" constant="8" id="8X1-bh-3yt"/>
+                                    <constraint firstItem="ojL-4h-3OB" firstAttribute="leading" secondItem="Jjr-cI-tFM" secondAttribute="leading" id="BtQ-RQ-v5K"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jjr-cI-tFM" secondAttribute="trailing" constant="8" id="OIg-VN-du6"/>
+                                    <constraint firstItem="ojL-4h-3OB" firstAttribute="firstBaseline" secondItem="Eom-Yf-EDT" secondAttribute="firstBaseline" id="Pyd-ik-4hb"/>
+                                    <constraint firstItem="ojL-4h-3OB" firstAttribute="top" secondItem="Jjr-cI-tFM" secondAttribute="bottom" constant="28" id="Z9w-7u-qx4"/>
+                                    <constraint firstItem="ojL-4h-3OB" firstAttribute="trailing" secondItem="Jjr-cI-tFM" secondAttribute="trailing" id="bPu-XG-6QP"/>
+                                    <constraint firstItem="Eom-Yf-EDT" firstAttribute="leading" secondItem="a4T-WP-Gj9" secondAttribute="leading" constant="8" id="hvo-Ue-3BJ"/>
+                                    <constraint firstAttribute="width" secondItem="a4T-WP-Gj9" secondAttribute="height" multiplier="49:34" id="y09-aG-ZBN"/>
+                                    <constraint firstItem="Jjr-cI-tFM" firstAttribute="top" secondItem="a4T-WP-Gj9" secondAttribute="top" constant="60" id="z7A-bx-mVK"/>
+                                    <constraint firstItem="Eom-Yf-EDT" firstAttribute="top" secondItem="a4T-WP-Gj9" secondAttribute="top" constant="58" id="z8G-37-5vr"/>
+                                    <constraint firstItem="ojL-4h-3OB" firstAttribute="bottom" secondItem="Eom-Yf-EDT" secondAttribute="bottom" id="zaN-Wg-d1p"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
                                         <integer key="value" value="10"/>
@@ -81,44 +124,13 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFX-jg-TG5">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem title="メッセー爺！" id="tmY-5h-J6v">
-                                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="rKd-3V-WdF">
-                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="delete" destination="pvl-5C-RFT" id="ahU-gd-7B0"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Edp-Qa-WW6">
-                                <rect key="frame" x="20" y="482" width="374" height="151"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFq-wf-kbp">
+                                <rect key="frame" x="299" y="591" width="60" height="59"/>
                                 <color key="backgroundColor" red="0.97680455450000003" green="0.90155806920000003" blue="0.8865142278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="18"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="book.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="W0i-cy-i3e">
-                                <rect key="frame" x="20" y="433" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.97680455450000003" green="0.90155806920000003" blue="0.8865142278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
-                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFq-wf-kbp">
-                                <rect key="frame" x="334" y="655" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.97680455450000003" green="0.90155806920000003" blue="0.8865142278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="W4S-lK-JAP"/>
+                                    <constraint firstAttribute="height" constant="60" id="ngH-EJ-aSf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" backgroundImage="plus.circle" catalog="system"/>
@@ -134,6 +146,29 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="UFq-wf-kbp" firstAttribute="trailing" secondItem="Edp-Qa-WW6" secondAttribute="trailing" id="4IP-cq-QfD"/>
+                            <constraint firstItem="a4T-WP-Gj9" firstAttribute="trailing" secondItem="Edp-Qa-WW6" secondAttribute="trailing" id="4Ta-LB-Ufw"/>
+                            <constraint firstItem="U7u-PT-Bem" firstAttribute="trailing" secondItem="a4T-WP-Gj9" secondAttribute="trailing" constant="16" id="5cD-j4-yYg"/>
+                            <constraint firstItem="W0i-cy-i3e" firstAttribute="leading" secondItem="a4T-WP-Gj9" secondAttribute="leading" id="5lT-KD-fmR"/>
+                            <constraint firstItem="U7u-PT-Bem" firstAttribute="trailing" secondItem="UFq-wf-kbp" secondAttribute="trailing" constant="16" id="9Gi-42-iCP"/>
+                            <constraint firstItem="Edp-Qa-WW6" firstAttribute="leading" secondItem="U7u-PT-Bem" secondAttribute="leading" constant="16" id="9Wt-Pb-MkN"/>
+                            <constraint firstItem="kFX-jg-TG5" firstAttribute="leading" secondItem="U7u-PT-Bem" secondAttribute="leading" id="ELK-mg-xjg"/>
+                            <constraint firstItem="U7u-PT-Bem" firstAttribute="bottom" secondItem="UFq-wf-kbp" secondAttribute="bottom" constant="16" id="Edn-TL-LkN"/>
+                            <constraint firstItem="Edp-Qa-WW6" firstAttribute="top" secondItem="W0i-cy-i3e" secondAttribute="bottom" constant="11" id="EhT-mH-Mwh"/>
+                            <constraint firstItem="W0i-cy-i3e" firstAttribute="leading" secondItem="U7u-PT-Bem" secondAttribute="leading" constant="16" id="Esk-6l-8f4"/>
+                            <constraint firstItem="U7u-PT-Bem" firstAttribute="trailing" secondItem="Edp-Qa-WW6" secondAttribute="trailing" constant="16" id="HSL-VX-N7y"/>
+                            <constraint firstItem="a4T-WP-Gj9" firstAttribute="leading" secondItem="Edp-Qa-WW6" secondAttribute="leading" id="Js5-8r-yya"/>
+                            <constraint firstItem="W0i-cy-i3e" firstAttribute="top" secondItem="a4T-WP-Gj9" secondAttribute="bottom" constant="8" id="NA3-yK-V4s"/>
+                            <constraint firstItem="U7u-PT-Bem" firstAttribute="trailing" secondItem="UFq-wf-kbp" secondAttribute="trailing" constant="16" id="Rb7-1v-ffU"/>
+                            <constraint firstItem="a4T-WP-Gj9" firstAttribute="leading" secondItem="U7u-PT-Bem" secondAttribute="leading" constant="16" id="Y6J-Ii-9ux"/>
+                            <constraint firstItem="U7u-PT-Bem" firstAttribute="trailing" secondItem="UFq-wf-kbp" secondAttribute="trailing" constant="16" id="Yhz-z9-wn4"/>
+                            <constraint firstItem="kFX-jg-TG5" firstAttribute="trailing" secondItem="U7u-PT-Bem" secondAttribute="trailing" id="YpC-vr-yrW"/>
+                            <constraint firstItem="U7u-PT-Bem" firstAttribute="trailing" secondItem="UFq-wf-kbp" secondAttribute="trailing" constant="16" id="i4A-dc-m3e"/>
+                            <constraint firstItem="a4T-WP-Gj9" firstAttribute="top" secondItem="kFX-jg-TG5" secondAttribute="bottom" constant="32" id="lVv-ql-UUx"/>
+                            <constraint firstItem="Edp-Qa-WW6" firstAttribute="leading" secondItem="W0i-cy-i3e" secondAttribute="leading" id="mIp-Qd-qgX"/>
+                            <constraint firstItem="kFX-jg-TG5" firstAttribute="top" secondItem="U7u-PT-Bem" secondAttribute="top" id="zUn-HU-yd9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="U7u-PT-Bem"/>
                     </view>
                     <connections>
@@ -153,38 +188,16 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-797.10144927536237" y="896.65178571428567"/>
+            <point key="canvasLocation" x="-797.60000000000002" y="896.40179910044981"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="9gy-Qj-TjQ">
             <objects>
                 <viewController storyboardIdentifier="SecondView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0lk-6g-eBu" customClass="SecondViewController" customModule="Messaji" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jMo-X4-8Hv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hc-Lv-HnQ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="メッセー爺！" id="jGW-DR-5dx">
-                                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="tpp-dI-r1e">
-                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="delete" destination="0lk-6g-eBu" id="ddr-K7-rl8"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u0I-PW-Rl5">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem id="x7p-J8-Nef"/>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ipa-gO-736">
                                 <rect key="frame" x="20" y="158" width="374" height="265"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -271,6 +284,20 @@
                                     <action selector="save:" destination="0lk-6g-eBu" eventType="touchUpInside" id="WRz-Sk-Wi0"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hc-Lv-HnQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="メッセー爺！" id="jGW-DR-5dx">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="tpp-dI-r1e">
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="delete" destination="0lk-6g-eBu" id="ddr-K7-rl8"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Awd-hS-y5p"/>
@@ -299,31 +326,9 @@
             <objects>
                 <viewController storyboardIdentifier="ThirdView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GFc-ou-j4V" customClass="ThirdViewController" customModule="Messaji" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bwu-p4-w3o">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFG-gy-ZMX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="メッセー爺！" id="cyb-qX-2R7">
-                                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="5JI-Ft-Gc6">
-                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="delete" destination="GFc-ou-j4V" id="K2E-dk-L1A"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t5O-c4-zOS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem id="f3b-Kb-2ro"/>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="av6-36-Oxu">
                                 <rect key="frame" x="20" y="158" width="374" height="265"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -410,6 +415,20 @@
                                     <action selector="save:" destination="GFc-ou-j4V" eventType="touchUpInside" id="oGL-hx-uce"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFG-gy-ZMX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="メッセー爺！" id="cyb-qX-2R7">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="5JI-Ft-Gc6">
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="delete" destination="GFc-ou-j4V" id="K2E-dk-L1A"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="K5A-QG-9Y9"/>
@@ -438,31 +457,9 @@
             <objects>
                 <viewController storyboardIdentifier="FourthView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dSv-XP-POF" customClass="FourthViewController" customModule="Messaji" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TWf-bD-hA3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wh9-tD-Rt7">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="メッセー爺！" id="kPB-m9-na0">
-                                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="muI-hx-UHe">
-                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <action selector="delete" destination="dSv-XP-POF" id="lYw-zO-6Zv"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z0f-2u-YIN">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem id="92p-e9-pJs"/>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rom-XP-yrn">
                                 <rect key="frame" x="20" y="158" width="374" height="265"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -549,6 +546,20 @@
                                     <action selector="save:" destination="dSv-XP-POF" eventType="touchUpInside" id="Hg4-Dk-SWc"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wh9-tD-Rt7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="メッセー爺！" id="kPB-m9-na0">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="muI-hx-UHe">
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="delete" destination="dSv-XP-POF" id="lYw-zO-6Zv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="W6G-eH-nhG"/>

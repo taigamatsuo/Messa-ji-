@@ -33,7 +33,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //UI設定諸々
     func UIset(){
-         AddImage.layer.cornerRadius = 70
+         AddImage.layer.cornerRadius = 60
          AddImage.layer.borderColor = UIColor.gray.cgColor
          AddImage.layer.borderWidth = 1
         
@@ -230,7 +230,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 (action: UIAlertAction!) -> Void in
         
                 UserDefaults.standard.removeObject(forKey: "today")
-                self.DateLabel.text = ""
+                self.NameText.text = ""
                 self.DateLabel.backgroundColor = .white
         
     })

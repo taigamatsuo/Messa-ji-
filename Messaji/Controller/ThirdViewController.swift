@@ -226,7 +226,7 @@ class ThirdViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 (action: UIAlertAction!) -> Void in
         
                 UserDefaults.standard.removeObject(forKey: "today3")
-                self.DateLabel.text = ""
+                self.NameText.text = ""
                 self.DateLabel.backgroundColor = .white
         
     })

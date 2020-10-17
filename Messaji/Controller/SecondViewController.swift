@@ -227,7 +227,7 @@ class SecondViewController: UIViewController, UIImagePickerControllerDelegate, U
                 (action: UIAlertAction!) -> Void in
         
                 UserDefaults.standard.removeObject(forKey: "today2")
-                self.DateLabel.text = ""
+                self.NameText.text = ""
                 self.DateLabel.backgroundColor = .white
         
     })
