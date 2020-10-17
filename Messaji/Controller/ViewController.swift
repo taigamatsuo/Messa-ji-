@@ -14,9 +14,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
        @IBOutlet weak var AddImage: UIImageView!
        @IBOutlet weak var NameText: UITextField!
        @IBOutlet weak var DateLabel: UILabel!
+       @IBOutlet var button : UIButton!
+       @IBOutlet var backView : UIView!
        var saveData : UserDefaults = UserDefaults.standard
        var Userimage : UIImage!
        var request : UNNotificationRequest!
+    let color = UIColor.colorLerp(from: .white, to: .red, progress: 0.5)
       
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +31,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //UI設定諸々
     func UIset(){
-         AddImage.layer.cornerRadius = 75
-         AddImage.layer.shadowColor = UIColor.black.cgColor //影の色を決める
-         AddImage.layer.shadowOpacity = 1 //影の色の透明度
-         AddImage.layer.shadowRadius = 8 //影のぼかし
-         AddImage.layer.shadowOffset = CGSize(width: 4, height: 4)
+         AddImage.layer.cornerRadius = 70
+         //AddImage.layer.shadowColor = UIColor.black.cgColor //影の色を決める
+        //AddImage.layer.shadowOpacity = 0.5 //影の色の透明度
+        // AddImage.layer.shadowRadius = 3 //影のぼかし
+       //  AddImage.layer.shadowOffset = CGSize(width: 4, height: 4)
+         AddImage.layer.borderColor = UIColor.gray.cgColor
+         AddImage.layer.borderWidth = 1
+       
+        
+        
+         button.layer.shadowOffset = CGSize(width: 1, height: 1 )
+         button.layer.shadowColor = UIColor.gray.cgColor
+         button.layer.shadowRadius = 5
+         button.layer.shadowOpacity = 1.0
         
          if DateLabel.text != nil{
              judgeDate()
@@ -59,7 +71,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
            dateFormatter.locale = Locale(identifier: "ja_JP")
     
            // 現在時刻の1分後に設定
-           let date2 = Date(timeInterval: 5, since: date)
+           let date2 = Date(timeInterval: 2320000, since: date)
            let targetDate = Calendar.current.dateComponents(
                [.year, .month, .day, .hour, .minute],
                from: date2)
@@ -115,6 +127,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                  judge = true
                  /* 今の日時を保存 */
                  saveData.set(now_day, forKey: "today")
+                 DateLabel.text = "今日が初日です"
                  
              }
 
@@ -126,7 +139,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
              }
              else {
               //日付が変わっていない時の処理をここに書く
-                DateLabel.text = "初日です！"
+                DateLabel.text = "今日が初日です"
              }
     }
          
@@ -164,28 +177,80 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     
+    //登録ボタンを押した時の処理
+    func touchStartAnimation() {
+        print("登録ボタンが押されました")
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: UIView.AnimationOptions.curveEaseIn, animations: {() -> Void in
+            self.button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95);
+            self.button.alpha = 0.9
+        },completion: nil)
+    
+      
+    }
+   
+    
     //登録ボタンで値をuserdefaultsへ保存する
-        @IBAction func save(_ sender: Any) {
-            os_log("setButton")
-           // saveData.set(EmailText.text, forKey: "key_EmailText")
+    @IBAction func save(_ sender: Any) {
+        
+        if saveData.object(forKey: "key_AddImage") == nil {
+            
+            let alert : UIAlertController = UIAlertController(title: "写真を設定してください", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
+            present(alert,animated: true, completion: nil)
+            
+        }else{
+            
+            touchStartAnimation()
+            DateLabel.backgroundColor = color
             saveData.set(NameText.text, forKey: "key_NameText")
-           // saveData.set(TextView.text, forKey: "key_TextView")
-            let data = Userimage.pngData()
-            saveData.set(data, forKey: "key_AddImage")
+           // let data = Userimage.pngData()
+            //saveData.set(data, forKey: "key_AddImage")
             judgeDate()
             // 通知リクエストの登録
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             print("alertrequest!")
       
-            
-            let alert : UIAlertController = UIAlertController(title: "登録しました", message: "", preferredStyle: .alert)
+            let alert : UIAlertController = UIAlertController(title: "登録しました", message: "30日ごとにリマインドを送ります", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title:"OK",style: .default, handler: nil))
             present(alert,animated: true, completion: nil)
     }
+    }
+   
     
-      // タップされたときの処理
-        @IBAction func tapped(sender: UITapGestureRecognizer){
-            print("押されました")
+    //delete
+    @IBAction func delete(){
+           
+               if saveData.object(forKey: "today") != nil {
+        let alert: UIAlertController = UIAlertController(title: "メッセージを送りましたか？", message:  "日付をリセットします", preferredStyle:  UIAlertController.Style.alert)
+    // 確定ボタンの処理
+    let confirmAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+        // 確定ボタンが押された時の処理をクロージャ実装する
+        (action: UIAlertAction!) -> Void in
+        //実際の処理
+       UserDefaults.standard.removeObject(forKey: "today")
+        self.DateLabel.text = ""
+        self.DateLabel.backgroundColor = .gray
+        
+    })
+    // キャンセルボタンの処理
+    let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler:{
+        // キャンセルボタンが押された時の処理をクロージャ実装する
+        (action: UIAlertAction!) -> Void in
+        //実際の処理
+        print("キャンセル")
+    })
+
+    //UIAlertControllerにキャンセルボタンと確定ボタンをActionを追加
+    alert.addAction(cancelAction)
+    alert.addAction(confirmAction)
+
+    //実際にAlertを表示する
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    @IBAction func tapAction(_ sender: Any) {
             //アラートを出す
             let alert : UIAlertController = UIAlertController(title: "プロフィール写真を選択", message: "", preferredStyle: .alert)
             
@@ -193,21 +258,58 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             alert.addAction(UIAlertAction(title:"OK",style: .default, handler: { action in
                 //ボタンが押された時の動作
                 print("OKが押されました")
-                
+    
                 //フォトライブラリの画像を呼び出す
                 let imagePickerController : UIImagePickerController = UIImagePickerController()
                 imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
                 imagePickerController.allowsEditing = true
                 self.present(imagePickerController,animated: true , completion: nil)
                 imagePickerController.delegate = self
+                
                 }
+                
             ))
+        
             alert.addAction(UIAlertAction(title:"Cancel",style: .default, handler: nil))
             present(alert,animated: true, completion: nil)
         }
     
-    
 }
+
+
+
+    extension UIColor {
+
+        static func colorLerp(from: UIColor, to: UIColor, progress: CGFloat) -> UIColor {
+            
+            let t = max(0, min(1, progress))
+            
+            var redA: CGFloat = 0
+            var greenA: CGFloat = 0
+            var blueA: CGFloat = 0
+            var alphaA: CGFloat = 0
+            from.getRed(&redA, green: &greenA, blue: &blueA, alpha: &alphaA)
+            
+            var redB: CGFloat = 0
+            var greenB: CGFloat = 0
+            var blueB: CGFloat = 0
+            var alphaB: CGFloat = 0
+            to.getRed(&redB, green: &greenB, blue: &blueB, alpha: &alphaB)
+            
+            let lerp = { (a: CGFloat, b: CGFloat, t: CGFloat) -> CGFloat in
+                return a + (b - a) * t
+            }
+            
+            let r = lerp(redA, redB, t)
+            let g = lerp(greenA, greenB, t)
+            let b = lerp(blueA, blueB, t)
+            let a = lerp(alphaA, alphaB, t)
+            
+            return UIColor(red: r, green: g, blue: b, alpha: a)
+        }
+    }
+    
+
     
 
         extension ViewController {
@@ -223,7 +325,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             //画像を変更
             self.AddImage.image = Userimage
             print("画像が選択されました")
+            let data = self.Userimage.pngData()
+            self.saveData.set(data, forKey: "key_AddImage")
             //imagepickerの削除
             self.dismiss(animated: true, completion: nil)
             }
         }
+
